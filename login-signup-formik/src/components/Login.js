@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import '../App.css';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,13 +44,27 @@ const Login = () => {
           ) : null}
         </div>
 
-        <div className="form-control">
+        <div className="form-control" style={{ position: 'relative' }}>
           <label htmlFor="password">Password</label>
           <input
             id="password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             {...formik.getFieldProps('password')}
+            style={{ paddingRight: '40px' }} 
           />
+          <span
+            onClick={togglePasswordVisibility}
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              color: '#888',
+            }}
+          >
+            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+          </span>
           {formik.touched.password && formik.errors.password ? (
             <div className="error">{formik.errors.password}</div>
           ) : null}
