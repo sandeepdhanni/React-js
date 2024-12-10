@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 
 function UseEffect() {
-    const [count,setCount]=useEffect(0)
+    const [count, setCount] = useState(0); 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCount((count) => count + 1);
+        }, 2000);
 
-    useEffect(()=>{ 
-        setTimeout(()=>{
-            setCount(count=>count+1);
-        },2000)
-    },[count])
-  return (
-    <div>
-        <h1>I've rendered {count} times..</h1>
-    </div>
-  )
+        return () => clearTimeout(timer); 
+    }, [count]); 
+    return (
+        <div>
+            <h1>I've rendered {count} times.</h1>
+        </div>
+    );
 }
 
-export default UseEffect
+export default UseEffect;
