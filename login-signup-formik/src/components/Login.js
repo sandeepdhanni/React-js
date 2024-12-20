@@ -48,7 +48,7 @@ const Login = () => {
             id="password"
             type={showPassword ? "text" : "password"}
             {...formik.getFieldProps("password")}
-            style={{ paddingRight: "40px" }}
+            style={{ paddingRight: "10px" }}
           />
           <span
             onClick={togglePasswordVisibility}
