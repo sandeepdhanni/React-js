@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  TextField,
 } from "@mui/material";
 import {
   ShoppingCart,
@@ -37,6 +38,14 @@ const Navbar = () => {
           <Typography variant="h6" className="font-bold text-white">
             MyShop
           </Typography>
+
+          {/* Search Bar */}
+          <TextField
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+            className="hidden md:block mx-4 text-bold" // Adjust visibility and spacing
+          />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-4">
