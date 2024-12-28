@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { deleteProduct } from '../features/products/productSlice';
+import {setSelectedProduct} from '../features/products/selectedProductSlice';
 
 const ProductTable = () => {
   const products = useSelector((state) => state.products.products);
@@ -9,6 +10,10 @@ const ProductTable = () => {
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
+  };
+
+  const handleSelectProduct = (product) => {
+    dispatch(setSelectedProduct(product));
   };
 
   return (
@@ -26,7 +31,7 @@ const ProductTable = () => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id}>
+            <tr key={product.id} onClick={() => handleSelectProduct(product)} className="cursor-pointer">
               <td className="border p-2">{product.id}</td>
               <td className="border p-2">{product.name}</td>
               <td className="border p-2">${product.price}</td>

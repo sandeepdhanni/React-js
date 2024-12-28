@@ -6,6 +6,7 @@ import store from './redux/store';
 import ProductCarousel from './components/Carousel';
 import ProductCard from './components/ProductCard';
 import { products } from './data';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ThemeProviderComponent, { useThemeContext } from './ThemeContext';
