@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   AppBar,
@@ -7,6 +6,7 @@ import {
   Button,
   Typography,
   Drawer,
+  Badge,
   List,
   ListItem,
   ListItemText,
@@ -18,14 +18,26 @@ import {
   WbSunny,
   NightsStay,
 } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 import { useThemeContext } from "../ThemeContext";
+import CartSidebar from "./cartSidebar";
 
 const Navbar = () => {
   const { toggleTheme, darkMode } = useThemeContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // Calculate total quantity of items in the cart
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
+  };
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
   };
 
   const navItems = ["Home", "Contact", "Shop", "FAQ", "Login"];
@@ -34,20 +46,17 @@ const Navbar = () => {
     <div className="flex-grow">
       <AppBar position="static" color="primary">
         <Toolbar className="flex justify-between">
-          {/* Logo or Brand Name */}
           <Typography variant="h6" className="font-bold text-white">
             MyShop
           </Typography>
 
-          {/* Search Bar */}
           <TextField
             variant="outlined"
             placeholder="Search..."
             size="small"
-            className="hidden md:block mx-4 text-bold" // Adjust visibility and spacing
+            className="hidden md:block mx-4 text-bold"
           />
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-4">
             {navItems.map((item) => (
               <Button
@@ -58,17 +67,17 @@ const Navbar = () => {
                 {item}
               </Button>
             ))}
-            <IconButton color="inherit">
-              <ShoppingCart />
+            <IconButton color="inherit" onClick={toggleCart}>
+              <Badge badgeContent={totalQuantity} color="secondary">
+                <ShoppingCart />
+              </Badge>
             </IconButton>
           </div>
 
-          {/* Theme Toggle */}
           <IconButton color="inherit" onClick={toggleTheme}>
             {darkMode ? <WbSunny /> : <NightsStay />}
           </IconButton>
 
-          {/* Mobile Menu Icon */}
           <IconButton
             edge="end"
             color="inherit"
@@ -81,7 +90,6 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Drawer for Mobile */}
       <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer}>
         <List className="w-64">
           {navItems.map((item) => (
@@ -89,12 +97,11 @@ const Navbar = () => {
               <ListItemText primary={item} />
             </ListItem>
           ))}
-          <ListItem button onClick={toggleDrawer}>
-            <IconButton edge="end" color="inherit">
-              <ShoppingCart />
-            </IconButton>
-          </ListItem>
         </List>
+      </Drawer>
+
+      <Drawer anchor="right" open={cartOpen} onClose={toggleCart}>
+        <CartSidebar />
       </Drawer>
     </div>
   );
