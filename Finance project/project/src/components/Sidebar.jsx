@@ -20,32 +20,46 @@ export default function Sidebar() {
     <Paper 
       elevation={3} 
       sx={{ 
-        width: 250,
+        width: 200,  // Reduced width to match image
         height: '100vh',
         position: 'fixed',
         left: 0,
-        top: 64, // Height of navbar
-        bgcolor: '#f5f5f5',
+        top: 64,
+        bgcolor: '#ffffff',
         overflowY: 'auto'
       }}
     >
-      <List>
+      <List sx={{ padding: 0 }}>  {/* Remove default padding */}
         {menuItems.map((text, index) => (
           <ListItem
             key={text}
             sx={{
+              padding: '8px 16px',  // Reduced padding
               borderBottom: '1px solid #e0e0e0',
+              color: '#0000EE',  // Traditional link color
+              textDecoration: 'underline',
               '&:hover': {
-                bgcolor: '#e3f2fd',
+                bgcolor: '#f5f5f5',
                 cursor: 'pointer'
               },
               ...(text === 'Contact Details' && {
-                bgcolor: '#bbdefb',
+                bgcolor: '#e8e8e8',
+                color: '#000000',
+                textDecoration: 'none',
                 fontWeight: 'bold'
               })
             }}
           >
-            <ListItemText primary={text} />
+            <ListItemText 
+              primary={text} 
+              sx={{ 
+                margin: 0,
+                '& .MuiTypography-root': {
+                  fontSize: '12px',  // Smaller font size
+                  lineHeight: 1.1    // Tighter line height
+                }
+              }}
+            />
           </ListItem>
         ))}
       </List>
