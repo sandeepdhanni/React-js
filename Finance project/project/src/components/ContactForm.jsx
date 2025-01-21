@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Grid from "@mui/material/Grid2";
+// import Grid from "@mui/material/Grid2";
 import {
   Box,
   TextField,
@@ -9,6 +9,8 @@ import {
   InputLabel,
   Typography,
   Checkbox,
+  Grid,
+  Button,
   FormControlLabel,
   Paper,
   FormHelperText,
@@ -78,6 +80,22 @@ export default function ContactForm() {
     return error;
   };
 
+  const handleSubmit = () => {
+    const allFieldsValid = Object.keys(contactDetails).every((section) => {
+      return Object.keys(contactDetails[section]).every((field) => {
+        const value = contactDetails[section][field];
+        const error = validateField(field, section, value);
+        return !error;
+      });
+    });
+
+    if (allFieldsValid) {
+      console.log("Form submitted successfully:", contactDetails);
+    } else {
+      console.error("Form contains errors");
+    }
+  };
+
   const handleChange = (field, section, value) => {
     // Validate the field
     const error = validateField(field, value, section);
@@ -117,15 +135,15 @@ export default function ContactForm() {
 
   return (
     <div>
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h6" color="black" gutterBottom>
+      <Box sx={{ p: 1 }}>
+        <Typography variant="h5" color="black" gutterBottom>
           Contact Details
         </Typography>
 
         {/* Correspondence Address */}
         <Paper elevation={3} sx={{ p: 3, mb: 3, border: "1px solid black" }}>
           <Box sx={{ mb: 4 }}>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Correspondence Address
             </Typography>
             <Grid container spacing={2}>
@@ -204,7 +222,7 @@ export default function ContactForm() {
         {/* Residence/Company Address */}
         <Paper elevation={3} sx={{ p: 3, mb: 3, border: "1px solid black" }}>
           <Box sx={{ mb: 4 }}>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Residence/Company Address
             </Typography>
             <Grid container spacing={2}>
@@ -303,8 +321,8 @@ export default function ContactForm() {
               </Grid>
 
               <Grid item xs={12} sm={4}>
-                 Community No. :
-                 <TextField
+                Community No. :
+                <TextField
                   fullWidth
                   label="Community No."
                   value={contactDetails.residenceAddress.communityNo}
@@ -356,139 +374,131 @@ export default function ContactForm() {
                 </FormControl>
               </Grid>
 
-              <Box sx={{ mb: 4 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={4}>
-                    Home Tel. No. :
-                    <TextField
-                      fullWidth
-                      label="Home Tel. No."
-                      value={contactDetails.contact.homeTel}
-                      onChange={(e) =>
-                        handleChange("homeTel", "contact", e.target.value)
-                      }
-                      error={!!errors?.contact?.homeTel}
-                      helperText={errors?.contact?.homeTel}
-                      inputProps={{ maxLength: 9 }}
-                    />
-                  </Grid>
+              <Grid item xs={12} sm={4}>
+                Home Tel. No. :
+                <TextField
+                  fullWidth
+                  label="Home Tel. No."
+                  value={contactDetails.contact.homeTel}
+                  onChange={(e) =>
+                    handleChange("homeTel", "contact", e.target.value)
+                  }
+                  error={!!errors?.contact?.homeTel}
+                  helperText={errors?.contact?.homeTel}
+                  inputProps={{ maxLength: 9 }}
+                />
+              </Grid>
 
-                  <Grid item xs={12} sm={4}>
-                    Mobile Tel. No. :
-                    <TextField
-                      fullWidth
-                      label="Mobile Tel. No."
-                      value={contactDetails.contact.mobileTel}
-                      onChange={(e) =>
-                        dispatch(updateContact({ mobileTel: e.target.value }))
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Fax No. :
-                    <TextField
-                      fullWidth
-                      label="Fax No."
-                      value={contactDetails.contact.faxNo}
-                      onChange={(e) =>
-                        dispatch(updateContact({ faxNo: e.target.value }))
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Other Tel. No. :
-                    <TextField
-                      fullWidth
-                      label="Text"
-                      value={contactDetails.contact.faxNo}
-                      onChange={(e) =>
-                        dispatch(updateContact({ faxNo: e.target.value }))
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Email :
-                    <TextField
-                      fullWidth
-                      label="Email"
-                      type="email"
-                      value={contactDetails.contact.email}
-                      onChange={(e) =>
-                        handleChange("email", "contact", e.target.value)
-                      }
-                      error={!!errors?.contact?.email}
-                      helperText={errors?.contact?.email}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Alternate Email :
-                    <TextField
-                      fullWidth
-                      label="Alternate Email"
-                      type="email"
-                      value={contactDetails.contact.alternateEmail}
-                      onChange={(e) =>
-                        dispatch(
-                          updateContact({ alternateEmail: e.target.value })
-                        )
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Preferred Mode of Communication :
-                    <FormControl fullWidth>
-                      <InputLabel>Preferred Mode of Communication</InputLabel>
-                      <Select
-                        value={contactDetails.contact.preferredMode}
-                        label="Preferred Mode of Communication"
-                        onChange={(e) =>
-                          dispatch(
-                            updateContact({ preferredMode: e.target.value })
-                          )
-                        }
-                      >
-                        {communicationModes.map((mode) => (
-                          <MenuItem key={mode} value={mode}>
-                            {mode}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    Preferred Language :
-                    <FormControl fullWidth>
-                      <InputLabel>Preferred Language</InputLabel>
-                      <Select
-                        value={contactDetails.contact.preferredLanguage}
-                        label="Preferred Language"
-                        onChange={(e) =>
-                          dispatch(
-                            updateContact({ preferredLanguage: e.target.value })
-                          )
-                        }
-                      >
-                        {languages.map((language) => (
-                          <MenuItem key={language} value={language}>
-                            {language}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  Permanent Address & Home Country Tel. No. :
-                  <TextField
-                    fullWidth
-                    label="Text"
-                    value={contactDetails.contact.faxNo}
+              <Grid item xs={12} sm={4}>
+                Mobile Tel. No. :
+                <TextField
+                  fullWidth
+                  label="Mobile Tel. No."
+                  value={contactDetails.contact.mobileTel}
+                  onChange={(e) =>
+                    dispatch(updateContact({ mobileTel: e.target.value }))
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                Fax No. :
+                <TextField
+                  fullWidth
+                  label="Fax No."
+                  value={contactDetails.contact.faxNo}
+                  onChange={(e) =>
+                    dispatch(updateContact({ faxNo: e.target.value }))
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                Other Tel. No. :
+                <TextField
+                  fullWidth
+                  label="Text"
+                  value={contactDetails.contact.faxNo}
+                  onChange={(e) =>
+                    dispatch(updateContact({ faxNo: e.target.value }))
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                Email :
+                <TextField
+                  fullWidth
+                  label="Email"
+                  type="email"
+                  value={contactDetails.contact.email}
+                  onChange={(e) =>
+                    handleChange("email", "contact", e.target.value)
+                  }
+                  error={!!errors?.contact?.email}
+                  helperText={errors?.contact?.email}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                Alternate Email :
+                <TextField
+                  fullWidth
+                  label="Alternate Email"
+                  type="email"
+                  value={contactDetails.contact.alternateEmail}
+                  onChange={(e) =>
+                    dispatch(updateContact({ alternateEmail: e.target.value }))
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                Preferred Mode of Communication :
+                <FormControl fullWidth>
+                  <InputLabel>Preferred Mode of Communication</InputLabel>
+                  <Select
+                    value={contactDetails.contact.preferredMode}
+                    label="Preferred Mode of Communication"
                     onChange={(e) =>
-                      dispatch(updateContact({ faxNo: e.target.value }))
+                      dispatch(updateContact({ preferredMode: e.target.value }))
                     }
-                  />
-                </Grid>
-              </Box>
+                  >
+                    {communicationModes.map((mode) => (
+                      <MenuItem key={mode} value={mode}>
+                        {mode}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={4} >
+                Preferred Language :
+                <FormControl fullWidth>
+                  <InputLabel>Preferred Language</InputLabel>
+                  <Select
+                    value={contactDetails.contact.preferredLanguage}
+                    label="Preferred Language"
+                    onChange={(e) =>
+                      dispatch(
+                        updateContact({ preferredLanguage: e.target.value })
+                      )
+                    }
+                  >
+                    {languages.map((language) => (
+                      <MenuItem key={language} value={language}>
+                        {language}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={4} p={1}>
+              Permanent Address & Home Country Tel. No. :
+              <TextField
+                fullWidth
+                label="Text"
+                value={contactDetails.contact.faxNo}
+                onChange={(e) =>
+                  dispatch(updateContact({ faxNo: e.target.value }))
+                }
+              />
             </Grid>
           </Box>
         </Paper>
@@ -496,7 +506,7 @@ export default function ContactForm() {
         {/* Domicile Address */}
         <Paper elevation={3} sx={{ p: 3, mb: 3, border: "1px solid black" }}>
           <Box>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Domicile Address
             </Typography>
             <FormControlLabel
@@ -564,7 +574,13 @@ export default function ContactForm() {
         </Paper>
 
         <CoApplicantTable />
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Grid>
       </Box>
     </div>
   );
 }
+
