@@ -133,6 +133,16 @@ export default function ContactForm() {
     }
   };
 
+
+  const labelStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    '& .MuiFormControl-root': {
+      flex: 1
+    }
+  };
+
   return (
     <div>
       <Box sx={{ p: 1 }}>
@@ -147,8 +157,8 @@ export default function ContactForm() {
               Correspondence Address
             </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={4}>
-                P.O Box No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '120px' }}>P.O Box No.:</Typography>
                 <TextField
                   fullWidth
                   label="P.O. Box No."
@@ -165,8 +175,8 @@ export default function ContactForm() {
                   required
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Emirate:
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Emirate:</Typography>
                 <FormControl
                   fullWidth
                   error={!!errors?.correspondenceAddress?.emirate}
@@ -197,8 +207,8 @@ export default function ContactForm() {
                   )}
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Area:
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Area:</Typography>
                 <TextField
                   fullWidth
                   label="Area"
@@ -226,8 +236,8 @@ export default function ContactForm() {
               Residence/Company Address
             </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={4}>
-                Flat/Villa No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Flat/Villa No. :</Typography>
                 <TextField
                   fullWidth
                   label="Flat/Villa No."
@@ -242,8 +252,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Building Name :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Building Name :</Typography>
                 <TextField
                   fullWidth
                   label="Building Name"
@@ -256,8 +266,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Street Name :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Street Name :</Typography>
                 <TextField
                   fullWidth
                   label="Street Name"
@@ -270,8 +280,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                P.O Box No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>P.O Box No. :</Typography>
                 <TextField
                   fullWidth
                   label="P.O. Box No."
@@ -284,8 +294,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Emirate:
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Emirate:</Typography>
                 <FormControl fullWidth>
                   <InputLabel>Emirate</InputLabel>
                   <Select
@@ -306,8 +316,8 @@ export default function ContactForm() {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Area:
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Area:</Typography>
                 <TextField
                   fullWidth
                   label="Area"
@@ -320,8 +330,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Community No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Community No. :</Typography>
                 <TextField
                   fullWidth
                   label="Community No."
@@ -334,8 +344,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Nearest Landmark :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Nearest Landmark :</Typography>
                 <TextField
                   fullWidth
                   label="Nearest Landmark"
@@ -350,8 +360,8 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Residence Type :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Residence Type :</Typography>
                 <FormControl fullWidth>
                   <InputLabel>Residence Type</InputLabel>
                   <Select
@@ -374,8 +384,9 @@ export default function ContactForm() {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Home Tel. No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Home Tel. No. :</Typography>
+
                 <TextField
                   fullWidth
                   label="Home Tel. No."
@@ -389,8 +400,9 @@ export default function ContactForm() {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
-                Mobile Tel. No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Mobile Tel. No. :</Typography>
+
                 <TextField
                   fullWidth
                   label="Mobile Tel. No."
@@ -400,8 +412,9 @@ export default function ContactForm() {
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Fax No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Fax No. :</Typography>
+
                 <TextField
                   fullWidth
                   label="Fax No."
@@ -411,19 +424,20 @@ export default function ContactForm() {
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Other Tel. No. :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Other Tel. No. :</Typography>
                 <TextField
                   fullWidth
-                  label="Text"
-                  value={contactDetails.contact.faxNo}
+                  label="Other Tel. No."
+                  value={contactDetails.contact.otherTel}  // Changed from faxNo
                   onChange={(e) =>
-                    dispatch(updateContact({ faxNo: e.target.value }))
+                    dispatch(updateContact({ otherTel: e.target.value }))  // Changed from faxNo
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Email :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Email :</Typography>
+
                 <TextField
                   fullWidth
                   label="Email"
@@ -436,8 +450,9 @@ export default function ContactForm() {
                   helperText={errors?.contact?.email}
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Alternate Email :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Alternate Email :</Typography>
+
                 <TextField
                   fullWidth
                   label="Alternate Email"
@@ -448,8 +463,9 @@ export default function ContactForm() {
                   }
                 />
               </Grid>
-              <Grid item xs={12} sm={4}>
-                Preferred Mode of Communication :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Preferred Mode of Communication :</Typography>
+
                 <FormControl fullWidth>
                   <InputLabel>Preferred Mode of Communication</InputLabel>
                   <Select
@@ -467,8 +483,9 @@ export default function ContactForm() {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={4} >
-                Preferred Language :
+              <Grid item xs={12} sm={4} sx={labelStyle}>
+                <Typography component="span" sx={{ minWidth: '50px' }}>Preferred Language :</Typography>
+
                 <FormControl fullWidth>
                   <InputLabel>Preferred Language</InputLabel>
                   <Select
@@ -489,14 +506,14 @@ export default function ContactForm() {
                 </FormControl>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={4} p={1}>
-              Permanent Address & Home Country Tel. No. :
+            <Grid item xs={12} sm={4} p={1} sx={labelStyle}>
+              <Typography component="span" sx={{ minWidth: '50px' }}>Permanent Address & Home Country Tel. No. :</Typography>
               <TextField
                 fullWidth
-                label="Text"
-                value={contactDetails.contact.faxNo}
+                label="Permanent Address & Home Country Tel. No."
+                value={contactDetails.contact.permanentAddress}  // Changed from faxNo
                 onChange={(e) =>
-                  dispatch(updateContact({ faxNo: e.target.value }))
+                  dispatch(updateContact({ permanentAddress: e.target.value }))  // Changed from faxNo
                 }
               />
             </Grid>
@@ -521,8 +538,9 @@ export default function ContactForm() {
             {!contactDetails.domicileAddress.sameAsCorrespondence && (
               <Grid container spacing={2}>
                 {/* Domicile address fields with validation */}
-                <Grid item xs={12} sm={4}>
-                  P.O. Box No. :
+                <Grid item xs={12} sm={4} sx={labelStyle}>
+                  <Typography component="span" sx={{ minWidth: '50px' }}>P.O. Box No. :</Typography>
+
                   <TextField
                     fullWidth
                     label="P.O. Box No."
@@ -535,8 +553,9 @@ export default function ContactForm() {
                     required
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  Emirate :
+                <Grid item xs={12} sm={4} sx={labelStyle}>
+                  <Typography component="span" sx={{ minWidth: '50px' }}>Emirate :</Typography>
+
                   <FormControl fullWidth>
                     <InputLabel>Emirate</InputLabel>
                     <Select
@@ -556,8 +575,8 @@ export default function ContactForm() {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  Area :
+                <Grid item xs={12} sm={4} sx={labelStyle}>
+                  <Typography component="span" sx={{ minWidth: '50px' }}>Area:</Typography>
                   <TextField
                     fullWidth
                     label="Area"
@@ -583,4 +602,3 @@ export default function ContactForm() {
     </div>
   );
 }
-
