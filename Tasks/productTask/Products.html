@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="Product.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Product Entry</h1>
+
+    <form id="productForm">
+      <input type="text" id="productName" placeholder="Product Name" required />
+      <input type="number" id="productPrice" placeholder="Product Price" required />
+      <div class="buttons">
+        <button type="submit">Add Product</button>
+        <button type="button" id="resetBtn">Reset</button>
+      </div>
+    </form>
+
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <script src="Product.js"></script>
+
+</body>
+</html>
