@@ -1,10 +1,11 @@
-
+import Login from './components/Login'
 import ProductTable from "./components/productTable/ProductTable";
 
 function App() {
   return(
     <>
-    <ProductTable />
+    {/* <ProductTable /> */}
+    <Login />
     </>
   )
     

@@ -88,3 +88,17 @@ th, td {
 .delete-btn {
   background-color: #e74c3c;
 }
+
+
+
+.tags-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkbox{
+  opacity: 0;
+  position: absolute;
+}
+.tag:has(.checkbox:checked){
+order: -1;
+}

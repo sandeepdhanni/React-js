@@ -3,12 +3,16 @@ import "./ProductTable.css";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
+import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+
 
 function ProductTable() {
   const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [serial, setSerial] = useState(1);
+  const [value, setValue] = React.useState(2);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -139,6 +143,13 @@ function ProductTable() {
 />
         </Paper>
       )}
+      <Rating
+        name="simple-controlled"
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      />
     </div>
   );
 }
