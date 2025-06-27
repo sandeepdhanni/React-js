@@ -1,11 +1,11 @@
-import Login from './components/Login'
+import ChatUI from './components/OpenAi/ChatUi';
 import ProductTable from "./components/productTable/ProductTable";
 
 function App() {
   return(
     <>
     {/* <ProductTable /> */}
-    <Login />
+    <ChatUI />
     </>
   )
     
